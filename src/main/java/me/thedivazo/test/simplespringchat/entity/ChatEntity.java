@@ -19,11 +19,13 @@ public class ChatEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne(optional = false)
+    private UserEntity owner;
     @ManyToMany
     @JoinTable(
             name = "chat_user",
             joinColumns = @JoinColumn(name = "chat_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            inverseJoinColumns = @JoinColumn(name = "member_id")
     )
     private Set<UserEntity> users;
 }
